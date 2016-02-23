@@ -8,5 +8,6 @@ void ShowEnString(unsigned int x,unsigned int y,unsigned char *str);
 void LcdClearScreen(void);
 void LCD12864WriteCommand(char comm);
 void LCD12864ShowRedRay(char void_l , char search_l , char search_m , char search_r , char void_r);
+void LCD12864ShowSpeed(char speed_l , char speed_r);
 #endif
 

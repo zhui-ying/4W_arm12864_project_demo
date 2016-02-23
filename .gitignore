@@ -11,3 +11,4 @@ JLinkLog.txt
 *.lst
 *.map
 *.iex
+*.uvgui*

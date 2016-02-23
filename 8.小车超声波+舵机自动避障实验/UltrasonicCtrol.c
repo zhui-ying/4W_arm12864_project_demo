@@ -28,7 +28,7 @@ void UltraSoundInit(void)
 	GPIO_InitStructure.GPIO_Pin = Echo_PIN;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;//≈‰÷√GPIO∂Àø⁄ÀŸ∂»
-	GPIO_Init(IRIN_GPIO , &GPIO_InitStructure);
+	GPIO_Init(Echo_GPIO , &GPIO_InitStructure);
 	
 	GPIO_InitStructure.GPIO_Pin = Trig_PIN;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;//

@@ -10,8 +10,8 @@ struct Cn16CharTypeDef                  // 汉字字模数据结构
 
 struct En16CharTypeDef                  // 汉字字模数据结构 
 {
-	unsigned char  Msk[16];             // 点阵码数据(16*16有32个数据) 
-	unsigned char  Index;            // 汉字内码索引,一个汉字占两个字节	
+	unsigned char  Msk[16];             // 点阵码数据(8*16有16个数据) 
+	unsigned char  Index;            // 字符内码索引,一个字符占一个字节	
 };
 
 struct Cn16CharTypeDef const CN16CHAR[]=

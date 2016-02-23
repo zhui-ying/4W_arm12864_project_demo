@@ -6,8 +6,8 @@
 //user LED PG15
 #define LED_PIN           GPIO_Pin_15
 #define LED_GPIO        GPIOG
-#define LED_SET         GPIO_SetBits(Servo_GPIO , Servo_PIN)
-#define LED_RESET       GPIO_ResetBits(Servo_GPIO , Servo_PIN)
+#define LED_SET         GPIO_SetBits(LED_GPIO , LED_PIN)
+#define LED_RESET       GPIO_ResetBits(LED_GPIO , LED_PIN)
 
 //红外遥控 红外接收器数据线,外部中断 PD10
 #define IRIN_PIN         GPIO_Pin_10

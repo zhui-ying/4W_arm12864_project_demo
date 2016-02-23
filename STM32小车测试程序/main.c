@@ -31,6 +31,20 @@ char ctrl_comm = COMM_STOP;//控制指令
 unsigned char continue_time=0;
 unsigned char bt_rec_flag=0;//蓝牙控制标志位
 
+void MeasureInit(void)
+{
+	GPIO_InitTypeDef  GPIO_InitStructure;
+	GPIO_InitStructure.GPIO_Pin = FRONT_RIGHT_S_PIN;//配置使能GPIO管脚
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;//配置GPIO模式,输入上拉
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;//配置GPIO端口速度
+	GPIO_Init(FRONT_RIGHT_S_GPIO , &GPIO_InitStructure); 
+	
+	GPIO_InitStructure.GPIO_Pin = FRONT_LEFT_S_PIN;//配置使能GPIO管脚
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;//配置GPIO模式,输入上拉
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;//配置GPIO端口速度
+	GPIO_Init(FRONT_LEFT_S_GPIO , &GPIO_InitStructure); 
+}
+
 int main(void)
 {
 	delay_init();
@@ -43,6 +57,8 @@ int main(void)
 	ServoInit();
 	USART3Conf(9600);
 	RedRayInit();
+	
+	MeasureInit();
 
  while(1)
  {	 
@@ -58,19 +74,25 @@ int main(void)
 			tick_50ms++;
 			if(tick_50ms >= 10)
 			{
-				char void_l,search_l,search_m,search_r,void_r;
+				char void_l,search_l,search_m,search_r,void_r,speed_l,speed_r;
 				search_m = 'M';
 				search_r = 'M';
 				search_l = 'M';
 				void_l = 'M';
 				void_r = 'M';
+				speed_l = 'M';
+				speed_r = 'M';
+				
 				tick_50ms = 0;
 				if(SEARCH_M_IO == 1) search_m = '0';
 				if(SEARCH_L_IO == 1) search_l = '0';
 				if(SEARCH_R_IO == 1) search_r = '0';
 				if(VOID_R_IO == 1) void_r = '0';
 				if(VOID_L_IO == 1) void_l = '0';
+				if(FRONT_LEFT_S_IO == 1) speed_l = '0';
+				if(FRONT_RIGHT_S_IO == 1) speed_r = '0';
 				LCD12864ShowRedRay(void_l , search_l , search_m , search_r , void_r);
+				LCD12864ShowSpeed(speed_l,speed_r);
 			}
 			
 			continue_time--;//200ms 无接收指令就停车

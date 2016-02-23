@@ -127,7 +127,7 @@ void LCD12864Init(void)
 
 	LcdClearScreen();
 	LcdWriteString(0, 0, "航太电子有限公司");
-	ShowEnString(0,3,"Command:");
+	ShowEnString(0,2,"Command:");
 	LCD12864WriteCommand(' ');
 }
 
@@ -305,7 +305,7 @@ void ShowEnString(unsigned int x,unsigned int y,unsigned char *str)
 *******************************************************************************/
 void LCD12864WriteCommand(char comm)
 {
-	ShowEnString(9*8,3,(unsigned char *)&comm);
+	ShowEnString(9*8,2,(unsigned char *)&comm);
 }
 
 void LCD12864ShowRedRay(char void_l , char search_l , char search_m , char search_r , char void_r)
@@ -318,5 +318,14 @@ void LCD12864ShowRedRay(char void_l , char search_l , char search_m , char searc
 	buf[12] = void_r;
 	buf[13] = '\0';
 	
-	ShowEnString(0,5,(unsigned char *)buf);
+	ShowEnString(0,4,(unsigned char *)buf);
+}
+
+void LCD12864ShowSpeed(char speed_l , char speed_r)
+{
+	char buf[8] = "        ";
+	buf[3] = speed_l;
+	buf[6] = speed_r;
+	buf[7] = '\0';
+	ShowEnString(0,6,(unsigned char *)buf);
 }
